@@ -1,9 +1,3 @@
-
-<a href="https://google.fr">google.fr</a>
-
-<a href="telnet://127.0.0.1">telnet</a>
-
-<a href="ssh://127.0.0.1">ssh</a>
-
-<a href="x-man-page://ls">x-man</a>
-
+<input id="url" placeholder="URL">
+<button onclick="document.getElementById('output').innerHTML = '<a href=' + document.getElementById('url').value + '>Link</a>'">Create Link</button>
+<div id="output"></div>
