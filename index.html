@@ -1,3 +1,9 @@
-<input id="url" placeholder="URL">
-<button onclick="document.getElementById('output').innerHTML = '<a href=' + document.getElementById('url').value + '>Link</a>'">Create Link</button>
-<div id="output"></div>
+<input id="url" placeholder="Enter URL" oninput="updateButton()">
+<button id="goBtn" onclick="window.location.href=document.getElementById('url').value">Go</button>
+
+<script>
+  function updateButton() {
+    const url = document.getElementById('url').value;
+    document.getElementById('goBtn').textContent = 'Go + ' + url;
+  }
+</script>
