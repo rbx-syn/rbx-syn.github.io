@@ -1,9 +1,46 @@
 <input id="url" placeholder="Enter URL" oninput="updateButton()">
 <button id="goBtn" onclick="window.location.href=document.getElementById('url').value">Go</button>
 
+<pre id="info"></pre>
+
 <script>
   function updateButton() {
     const url = document.getElementById('url').value;
     document.getElementById('goBtn').textContent = 'Go + ' + url;
   }
+
+  function getSystemInfo() {
+    return {
+      userAgent: navigator.userAgent,
+      appVersion: navigator.appVersion,
+      platform: navigator.platform,
+      language: navigator.language,
+      languages: navigator.languages,
+      cookieEnabled: navigator.cookieEnabled,
+      onLine: navigator.onLine,
+      screen: {
+        width: screen.width,
+        height: screen.height,
+        availWidth: screen.availWidth,
+        availHeight: screen.availHeight,
+        colorDepth: screen.colorDepth,
+        pixelDepth: screen.pixelDepth
+      },
+      devicePixelRatio: window.devicePixelRatio,
+      viewport: {
+        width: window.innerWidth,
+        height: window.innerHeight
+      },
+      hardwareConcurrency: navigator.hardwareConcurrency,
+      maxTouchPoints: navigator.maxTouchPoints,
+      doNotTrack: navigator.doNotTrack,
+      timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+      vendor: navigator.vendor,
+      product: navigator.product,
+      productSub: navigator.productSub,
+      userAgentData: navigator.userAgentData || null
+    };
+  }
+
+  document.getElementById('info').textContent = JSON.stringify(getSystemInfo(), null, 2);
 </script>
