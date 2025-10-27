@@ -3,6 +3,14 @@
 
 <pre id="info"></pre>
 
+<hr>
+
+<h3>JS REPL</h3>
+<textarea id="replInput" placeholder="JS" rows="6" style="width:100%;"></textarea>
+<br>
+<button id="runBtn" onclick="runCode()">Run</button>
+<pre id="replOutput" style="background:#111; color:#0f0; padding:10px; min-height:50px;"></pre>
+
 <script>
   function updateButton() {
     const url = document.getElementById('url').value;
@@ -43,4 +51,15 @@
   }
 
   document.getElementById('info').textContent = JSON.stringify(getSystemInfo(), null, 2);
+
+  function runCode() {
+    const code = document.getElementById('replInput').value;
+    const output = document.getElementById('replOutput');
+    try {
+      const result = eval(code);
+      output.textContent = typeof result === 'undefined' ? 'undefined' : String(result);
+    } catch (err) {
+      output.textContent = 'Error: ' + err.message;
+    }
+  }
 </script>
