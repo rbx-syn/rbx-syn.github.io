@@ -5,11 +5,17 @@
 
 <hr>
 
-<h3>JS REPL</h3>
+<h3>JSREPL</h3>
 <textarea id="replInput" placeholder="JS" rows="6" style="width:100%;"></textarea>
 <br>
 <button id="runBtn" onclick="runCode()">Run</button>
 <pre id="replOutput" style="background:#111; color:#0f0; padding:10px; min-height:50px;"></pre>
+
+
+<hr>
+<h3>Open a File</h3>
+<button id="openFileBtn" onclick="openFile()">Open File</button>
+<pre id="fileOutput" style="background:#222; color:#0ff; padding:10px; min-height:50px;"></pre>
 
 <script>
   function updateButton() {
@@ -61,5 +67,21 @@
     } catch (err) {
       output.textContent = 'Error: ' + err.message;
     }
+  }
+
+  function openFile() {
+    Object.assign(document.createElement('input'), {
+      type: 'file',
+      onchange: e => {
+        const file = e.target.files[0];
+        if (!file) return;
+        const reader = new FileReader();
+        reader.onload = ev => {
+          document.getElementById('fileOutput').textContent = 
+            `File: ${file.name}\n\n${ev.target.result}`;
+        };
+        reader.readAsText(file);
+      }
+    }).click();
   }
 </script>
